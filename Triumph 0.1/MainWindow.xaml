@@ -11,14 +11,14 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="700" SizeToContent="WidthAndHeight">
     <Grid>
-        <Button Width="50"
+        <Button Width="100"
                 Content="try it" 
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignPaperButton}"
                 ToolTip="Resource name: MaterialDesignPaperButton"
-                Click="Button_Click"/>
-    
+                Margin="154,118,446,285"/>
+
     </Grid>
 </Window>
