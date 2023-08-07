@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace Triumph_0._1
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Menu.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Menu : Page
     {
-        public MainWindow()
+        public Menu()
         {
             InitializeComponent();
-            Menu menu = new Menu();
-            FrameWork.Content = new Frame() { Content = menu };
         }
-
     }
 }

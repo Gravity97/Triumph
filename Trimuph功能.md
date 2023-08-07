@@ -6,6 +6,7 @@
 * 为了可拓展性，把所有功能放在一个隐藏图标？用户可自定义主要功能布局
 * #FF6F9BC6  #FFF3993A
 * #FF5654A2 #FFF7BDCB
+* tab\button\list\popup
 
 #### 关闭应用（游戏）
 
