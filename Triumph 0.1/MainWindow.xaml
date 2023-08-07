@@ -13,12 +13,18 @@
         FontFamily="{materialDesign:MaterialDesignFont}"
         Title="MainWindow" Height="450" Width="700" SizeToContent="WidthAndHeight">
     <Grid>
-        <Button Width="100"
-                Content="try it" 
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                Style="{StaticResource MaterialDesignPaperButton}"
-                ToolTip="Resource name: MaterialDesignPaperButton"
-                Margin="154,118,446,285"/>
+        <materialDesign:ColorZone Padding="16"
+                                  materialDesign:ElevationAssist.Elevation="Dp4"
+                                  ClipToBounds="False"
+                                  CornerRadius="10"
+                                  Mode="SecondaryMid">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock Margin="16,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Material Design In XAML Toolkit" />
+            </StackPanel>
+        </materialDesign:ColorZone>
 
     </Grid>
 </Window>
