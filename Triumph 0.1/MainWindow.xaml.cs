@@ -23,8 +23,8 @@ namespace Triumph_0._1
         public MainWindow()
         {
             InitializeComponent();
-            Menu menu = new Menu();
-            FrameWork.Content = new Frame() { Content = menu };
+            Home home = new Home();
+            FrameWork.Content = new Frame() { Content = home };
         }
 
     }

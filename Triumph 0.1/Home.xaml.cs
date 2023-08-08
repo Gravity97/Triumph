@@ -18,9 +18,9 @@ namespace Triumph_0._1
     /// <summary>
     /// Menu.xaml 的交互逻辑
     /// </summary>
-    public partial class Menu : Page
+    public partial class Home : Page
     {
-        public Menu()
+        public Home()
         {
             InitializeComponent();
         }
