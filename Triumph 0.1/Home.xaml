@@ -22,6 +22,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <materialDesign:ColorZone
             Padding="16"
             materialDesign:ElevationAssist.Elevation="Dp4"
@@ -55,9 +56,11 @@
                         Stretch="UniformToFill" />
                     <Button
                         Grid.Row="0"
-                        Margin="0,0,16,-20"
+                        Grid.RowSpan="2"
+                        Margin="0,140,16,0"
                         HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
+                        VerticalAlignment="Top"
+                        Click="Card1_Click"
                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
                         <materialDesign:PackIcon Kind="MicrosoftXboxControllerOff" />
                     </Button>
@@ -75,6 +78,7 @@
                         Width="140"
                         Margin="8"
                         materialDesign:ButtonAssist.CornerRadius="10"
+                        Click="Card1_Click"
                         Content="come on!"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
@@ -105,7 +109,7 @@
                         <materialDesign:PackIcon Kind="MicrosoftXboxControllerOff" />
                     </Button>
                     <StackPanel Grid.Row="1" Margin="8,24,8,0">
-                        <TextBlock FontWeight="Bold"><Run Text="Cycling"/></TextBlock>
+                        <TextBlock FontWeight="Bold"><Run Text="Cycling" /></TextBlock>
                         <TextBlock
                             VerticalAlignment="Center"
                             Text="A great way to keep fit and forget about the constant grind of IT."
@@ -147,7 +151,7 @@
                         <materialDesign:PackIcon Kind="MicrosoftXboxControllerOff" />
                     </Button>
                     <StackPanel Grid.Row="1" Margin="8,24,8,0">
-                        <TextBlock FontWeight="Bold"><Run Text="Cycling"/></TextBlock>
+                        <TextBlock FontWeight="Bold"><Run Text="Cycling" /></TextBlock>
                         <TextBlock
                             VerticalAlignment="Center"
                             Text="A great way to keep fit and forget about the constant grind of IT."

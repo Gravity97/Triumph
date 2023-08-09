@@ -16,19 +16,18 @@ using System.Windows.Shapes;
 namespace Triumph_0._1
 {
     /// <summary>
-    /// Menu.xaml 的交互逻辑
+    /// GameKiller.xaml 的交互逻辑
     /// </summary>
-    public partial class Home : Page
+    public partial class PageGK : Page
     {
-        Func func = new Func();
-        public Home()
+        public PageGK()
         {
             InitializeComponent();
         }
 
-        public void Card1_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            func.execute(func.homeFunc[0].id, this);
+
         }
     }
 }
