@@ -14,6 +14,7 @@
     TextElement.FontSize="14"
     TextElement.FontWeight="Medium"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    
     mc:Ignorable="d">
 
     <Grid>
@@ -26,9 +27,10 @@
         <materialDesign:Card>
             <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type materialDesign:Card}}, Path=ActualHeight}">
                 <MenuItem
+                    x:Name="BtnBack"
                     Background="{DynamicResource SecondaryHueMidBrush}"
                     Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
-                    Header="Back" />
+                    Header="Back" Click="BtnBack_Click" />
                 <MenuItem
                     Background="{DynamicResource SecondaryHueMidBrush}"
                     Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
@@ -38,6 +40,7 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <materialDesign:Clock
+                x:Name="MyClock"
                 Width="Auto"
                 Margin="0,1"
                 DisplayAutomation="CycleWithSeconds"
@@ -93,6 +96,7 @@
                     </StackPanel>
 
                     <StackPanel
+                        x:Name="ChipStackPanel"
                         Grid.Column="1"
                         Margin="5,20,0,0"
                         Orientation="Vertical">
@@ -110,19 +114,22 @@
                     </Grid.ColumnDefinitions>
 
                     <ComboBox
+                        x:Name="MyComboBox"
                         Grid.Column="0"
                         Width="240"
-                        materialDesign:HintAssist.HelperText="Helper text"
+                        materialDesign:HintAssist.HelperText="Don't forget."
                         materialDesign:HintAssist.Hint="Select the app."
+                        SelectionChanged="MyComboBox_SelectionChanged"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}">
                         <ComboBoxItem Content="Item 1" />
                         <ComboBoxItem Content="Item 2" />
                         <ComboBoxItem Content="Item 3" />
                     </ComboBox>
                     <Button
+                        x:Name="AlarmBtn"
                         Grid.Column="1"
                         Margin="40,10,0,10"
-                        Click="Button_Click"
+                        Click="AlarmBtn_Click"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}"
                         ToolTip="MaterialDesignFloatingActionSecondaryButton">

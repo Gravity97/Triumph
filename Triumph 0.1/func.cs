@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 
 namespace Triumph_0._1
 {
-    internal class Func
+    public class Func
     {
         const int GAMEKILLER = 1;
 
@@ -37,6 +37,8 @@ namespace Triumph_0._1
         public FuncInfo[] homeFunc = new FuncInfo[N];
         public Dictionary<int, FuncInfo> allFunc = new Dictionary<int, FuncInfo>();
 
+        public PageGK pageGK = null;
+
         public Func()
         {
             allFunc.Add(GAMEKILLER, new FuncInfo(GAMEKILLER, "Game Killer", "A ruthless killer to take you out of the pain of the game.", "images/killGame.webp", "MicrosoftXboxControllerOff", "come on!"));
@@ -52,7 +54,9 @@ namespace Triumph_0._1
             switch (id)
             {
                 case GAMEKILLER:
-                    NavigationService.GetNavigationService(sender).Navigate(new PageGK());
+                    if(pageGK == null)
+                        pageGK = new PageGK();
+                    NavigationService.GetNavigationService(sender).Navigate(this.pageGK);
                     break;
             }
         }

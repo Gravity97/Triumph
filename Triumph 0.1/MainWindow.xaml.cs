@@ -20,12 +20,17 @@ namespace Triumph_0._1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Home home;
         public MainWindow()
         {
             InitializeComponent();
-            Home home = new Home();
+            this.home = new Home();
             FrameWork.Content = new Frame() { Content = home };
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.home.func.pageGK.WritePlans();
+        }
     }
 }

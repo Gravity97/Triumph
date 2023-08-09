@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Triumph_0._1
 {
     /// <summary>
-    /// Menu.xaml 的交互逻辑
+    /// Home.xaml 的交互逻辑
     /// </summary>
     public partial class Home : Page
     {
-        Func func = new Func();
+        public Func func = new Func();
         public Home()
         {
             InitializeComponent();

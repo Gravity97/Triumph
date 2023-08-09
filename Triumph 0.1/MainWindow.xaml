@@ -9,6 +9,7 @@
     Width="700"
     Height="450"
     SizeToContent="WidthAndHeight"
+    Closing="Window_Closing"
     mc:Ignorable="d">
 
     <Frame

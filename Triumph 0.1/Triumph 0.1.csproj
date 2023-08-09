@@ -82,6 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Func.cs" />
+    <Compile Include="IniFileHelper.cs" />
     <Compile Include="PageGK.xaml.cs">
       <DependentUpon>PageGK.xaml</DependentUpon>
     </Compile>
@@ -98,6 +99,7 @@
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProcKiller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
