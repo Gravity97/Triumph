@@ -13,6 +13,9 @@ namespace Triumph_0._1
         readonly public DateTime time;
         readonly public string App;
         readonly public Timer timer;
+
+        public event Action<ProcKiller> ProcessKilled;
+
         public ProcKiller(string App, DateTime time)
         {
             this.App = App;
@@ -22,8 +25,11 @@ namespace Triumph_0._1
             TimeSpan timeUntilAim = this.time - now;
 
             // 创建定时器，到达时间后执行任务
-            this.timer = new Timer(ShutdownProcess, null, timeUntilAim, Timeout.InfiniteTimeSpan);
-            Console.WriteLine("Start killing proc: " + App + " after " + timeUntilAim.ToString());
+            if(timeUntilAim.TotalMilliseconds > 0.0)
+            {
+                this.timer = new Timer(ShutdownProcess, null, timeUntilAim, Timeout.InfiniteTimeSpan);
+                Console.WriteLine("Start killing proc: " + App + " after " + timeUntilAim.ToString());
+            }
         }
 
         private void ShutdownProcess(object state)
@@ -43,6 +49,8 @@ namespace Triumph_0._1
                 }
             }
             Console.WriteLine("finished killing.");
+
+            ProcessKilled?.Invoke(this);
         }
     }
 }

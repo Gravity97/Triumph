@@ -10,6 +10,7 @@ namespace Triumph_0._1
     internal class IniFileHelper
     {
         private readonly string path;
+        const string invalid = "";
 
         public IniFileHelper(string path)
         {
@@ -20,7 +21,7 @@ namespace Triumph_0._1
         public string ReadIniValue(string group, string key)
         {
             StringBuilder value = new StringBuilder(255);
-            GetPrivateProfileString(group, key, "", value, 255, path);
+            GetPrivateProfileString(group, key, invalid, value, 255, path);
             return value.ToString();
         }
 
@@ -28,6 +29,11 @@ namespace Triumph_0._1
         public void WriteIniValue(string group, string key, string newValue)
         {
             WritePrivateProfileString(group, key, newValue, path);
+        }
+
+        public void RemoveIniGroup(string group)
+        {
+            WritePrivateProfileString(group, null, null, path);
         }
 
         // P/Invoke声明

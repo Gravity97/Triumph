@@ -47,7 +47,9 @@ namespace Triumph_0._1
 
                 string[] array = ret.Split(',');
                 DateTime time = DateTime.ParseExact(array[0], "yyyy.MM.dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                plans.Add(new ProcKiller(array[1], time));
+                ProcKiller newpk = new ProcKiller(array[1], time);
+                newpk.ProcessKilled += HandleProcessKilled;
+                plans.Add(newpk);
 
                 Chip newChip = new Chip
                 {
@@ -86,9 +88,12 @@ namespace Triumph_0._1
             if(App == "")
             {
                 MessageBox.Show("No App was selected.");
+                return;
             }
 
-            plans.Add(new ProcKiller(App, selectedTime));
+            ProcKiller newpk = new ProcKiller(App, selectedTime);
+            newpk.ProcessKilled += HandleProcessKilled;
+            plans.Add(newpk);
             Console.WriteLine("Start killing proc: " + App + " at " + selectedTime.ToString());
 
             Chip newChip = new Chip
@@ -110,6 +115,8 @@ namespace Triumph_0._1
 
         public void WritePlans()
         {
+            iniFile.RemoveIniGroup("Plans");
+
             int count = 1;
             foreach (ProcKiller plan in plans)
             {
@@ -117,6 +124,32 @@ namespace Triumph_0._1
                 count++;
             }
             Console.WriteLine("finished write ini file");
+        }
+
+        private void HandleProcessKilled(ProcKiller plan)
+        {
+            while (plans.Contains(plan))
+            {
+                plans.Remove(plan);
+            }
+
+            Dispatcher.Invoke(() =>
+            {
+                List<UIElement> elementsToRemove = new List<UIElement>();
+
+                foreach (UIElement child in ChipStackPanel.Children)
+                {
+                    if (child is Chip chip && chip.Content.ToString() == plan.time.ToString("HH:mm:ss") + " " + plan.App)
+                    {
+                        elementsToRemove.Add(child);
+                    }
+                }
+
+                foreach (UIElement element in elementsToRemove)
+                {
+                    ChipStackPanel.Children.Remove(element);
+                }
+            });
         }
     }
 }
