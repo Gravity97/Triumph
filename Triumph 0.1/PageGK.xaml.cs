@@ -156,7 +156,11 @@ namespace Triumph_0._1
 
         private void HandleReminded(int timespan)
         {
-            MessageBox.Show("It will be killed after " + timespan.ToString() + " minutes!");
+            Dispatcher.Invoke(() =>
+            {
+                Reminder reminder = new Reminder(timespan);
+                reminder.ShowDialog();
+            });
         }
     }
 }
