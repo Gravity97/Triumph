@@ -12,23 +12,31 @@ namespace Triumph_0._1
     {
         readonly public DateTime time;
         readonly public string App;
-        readonly public Timer timer;
+        readonly public int remindTimeSpan;
+        readonly public Timer killer;
+        readonly public Timer message;
 
         public event Action<ProcKiller> ProcessKilled;
+        public event Action<int> Reminded;
 
-        public ProcKiller(string App, DateTime time)
+        public ProcKiller(string App, DateTime time, int remindTimeSpan = 1)
         {
             this.App = App;
             this.time = time;
+            this.remindTimeSpan = remindTimeSpan;
 
             DateTime now = DateTime.Now;
             TimeSpan timeUntilAim = this.time - now;
 
             // 创建定时器，到达时间后执行任务
-            if(timeUntilAim.TotalMilliseconds > 0.0)
+            if (timeUntilAim.TotalMilliseconds > 0.0)
             {
-                this.timer = new Timer(ShutdownProcess, null, timeUntilAim, Timeout.InfiniteTimeSpan);
+                this.killer = new Timer(ShutdownProcess, null, timeUntilAim, Timeout.InfiniteTimeSpan);
                 Console.WriteLine("Start killing proc: " + App + " after " + timeUntilAim.ToString());
+
+                TimeSpan timeUntilRemind = timeUntilAim.Subtract(TimeSpan.FromMinutes(remindTimeSpan));
+                if (timeUntilRemind.TotalMilliseconds > 0.0)
+                    this.message = new Timer(Reminding, null, timeUntilAim.Subtract(TimeSpan.FromMinutes(remindTimeSpan)), Timeout.InfiniteTimeSpan);
             }
         }
 
@@ -51,6 +59,11 @@ namespace Triumph_0._1
             Console.WriteLine("finished killing.");
 
             ProcessKilled?.Invoke(this);
+        }
+
+        private void Reminding(object state)
+        {
+            Reminded?.Invoke(remindTimeSpan);
         }
     }
 }

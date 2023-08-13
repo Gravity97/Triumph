@@ -14,7 +14,7 @@ namespace Triumph_0._1
 
         public IniFileHelper(string path)
         {
-            this.path = "../../" + path;
+            this.path = path;
         }
 
         // 读取INI文件中的指定键的值

@@ -22,7 +22,7 @@ namespace Triumph_0._1
     /// </summary>
     public partial class PageGK : Page
     {
-        private IniFileHelper iniFile = new IniFileHelper("Properties/GameKiller.ini");
+        private IniFileHelper iniFile = new IniFileHelper("./GameKiller.ini");
         private List<ProcKiller> plans = new List<ProcKiller>();
 
         public PageGK()
@@ -49,6 +49,7 @@ namespace Triumph_0._1
                 DateTime time = DateTime.ParseExact(array[0], "yyyy.MM.dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 ProcKiller newpk = new ProcKiller(array[1], time);
                 newpk.ProcessKilled += HandleProcessKilled;
+                newpk.Reminded += HandleReminded;
                 plans.Add(newpk);
 
                 Chip newChip = new Chip
@@ -93,6 +94,7 @@ namespace Triumph_0._1
 
             ProcKiller newpk = new ProcKiller(App, selectedTime);
             newpk.ProcessKilled += HandleProcessKilled;
+            newpk.Reminded += HandleReminded;
             plans.Add(newpk);
             Console.WriteLine("Start killing proc: " + App + " at " + selectedTime.ToString());
 
@@ -150,6 +152,11 @@ namespace Triumph_0._1
                     ChipStackPanel.Children.Remove(element);
                 }
             });
+        }
+
+        private void HandleReminded(int timespan)
+        {
+            MessageBox.Show("It will be killed after " + timespan.ToString() + " minutes!");
         }
     }
 }
