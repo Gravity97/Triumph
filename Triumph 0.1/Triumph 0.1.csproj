@@ -83,7 +83,7 @@
     <Compile Include="Reminder.xaml.cs">
       <DependentUpon>Reminder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="utility\Func.cs" />
+    <Compile Include="utility\Module.cs" />
     <Compile Include="utility\IniFileHelper.cs" />
     <Compile Include="utility\ProcKiller.cs" />
     <Page Include="PageGK.xaml">

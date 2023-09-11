@@ -19,7 +19,7 @@ namespace Triumph_0._1
         public event Action<ProcKiller> ProcessKilled;
         public event Action<int> Reminded;
 
-        public ProcKiller(string App, DateTime time, int remindTimeSpan = 1)
+        public ProcKiller(string App, DateTime time, int remindTimeSpan = 5)
         {
             this.App = App;
             this.time = time;

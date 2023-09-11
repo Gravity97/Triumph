@@ -22,8 +22,8 @@ namespace Triumph_0._1
     /// </summary>
     public partial class PageGK : Page
     {
-        private IniFileHelper iniFile = new IniFileHelper("./GameKiller.ini");
-        private List<ProcKiller> plans = new List<ProcKiller>();
+        private readonly IniFileHelper iniFile = new IniFileHelper("./GameKiller.ini");
+        private readonly List<ProcKiller> plans = new List<ProcKiller>();
 
         public PageGK()
         {
@@ -64,7 +64,7 @@ namespace Triumph_0._1
             }
         }
 
-        private DateTime getNearestTime(DateTime time)
+        private DateTime GetNearestTime(DateTime time)
         {
             DateTime now = DateTime.Now;
             DateTime today = new DateTime(now.Year, now.Month, now.Day, time.Hour, time.Minute, time.Second);
@@ -82,7 +82,7 @@ namespace Triumph_0._1
 
         private void AlarmBtn_Click(object sender, RoutedEventArgs e)
         {
-            DateTime selectedTime = getNearestTime(MyClock.Time);
+            DateTime selectedTime = GetNearestTime(MyClock.Time);
             Console.WriteLine("Selected Time: " + selectedTime.ToString("yyyy.MM.dd HH:mm:ss"));
 
             string App = MyComboBox.Text;

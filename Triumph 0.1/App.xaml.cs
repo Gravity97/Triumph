@@ -11,7 +11,7 @@ namespace Triumph_0._1
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
     }
 }

@@ -20,7 +20,7 @@ namespace Triumph_0._1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Home home;
+        private readonly Home home;
         public MainWindow()
         {
             InitializeComponent();

@@ -8,11 +8,11 @@ using System.Windows.Navigation;
 
 namespace Triumph_0._1
 {
-    public class Func
+    public class Module
     {
         const int GAMEKILLER = 1;
 
-        public struct FuncInfo
+        public struct ModuleInfo
         {
             public int id;
             public string title;
@@ -21,7 +21,7 @@ namespace Triumph_0._1
             public string icon;
             public string button;
 
-            public FuncInfo(int id, string ti, string de, string im, string ic, string btn)
+            public ModuleInfo(int id, string ti, string de, string im, string ic, string btn)
             {
                 this.id = id;
                 this.title = ti;
@@ -34,22 +34,22 @@ namespace Triumph_0._1
         }
 
         const int N = 3;
-        public FuncInfo[] homeFunc = new FuncInfo[N];
-        public Dictionary<int, FuncInfo> allFunc = new Dictionary<int, FuncInfo>();
+        public ModuleInfo[] mainModules = new ModuleInfo[N];
+        public Dictionary<int, ModuleInfo> allModules = new Dictionary<int, ModuleInfo>();
 
         public PageGK pageGK = null;
 
-        public Func()
+        public Module()
         {
-            allFunc.Add(GAMEKILLER, new FuncInfo(GAMEKILLER, "Game Killer", "A ruthless killer to take you out of the pain of the game.", "images/killGame.webp", "MicrosoftXboxControllerOff", "come on!"));
+            allModules.Add(GAMEKILLER, new ModuleInfo(GAMEKILLER, "Game Killer", "A ruthless killer to take you out of the pain of the game.", "images/killGame.webp", "MicrosoftXboxControllerOff", "come on!"));
 
-            if (allFunc.ContainsKey(GAMEKILLER))
+            if (allModules.ContainsKey(GAMEKILLER))
             {
-                homeFunc[0] = allFunc[GAMEKILLER];
+                mainModules[0] = allModules[GAMEKILLER];
             }
         }
 
-        public void execute(int id, System.Windows.DependencyObject sender)
+        public void Execute(int id, System.Windows.DependencyObject sender)
         {
             switch (id)
             {
