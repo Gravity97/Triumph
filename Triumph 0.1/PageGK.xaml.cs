@@ -23,7 +23,7 @@ namespace Triumph_0._1
     public partial class PageGK : Page
     {
         private readonly IniFileHelper iniFile = new IniFileHelper("./GameKiller.ini");
-        private readonly List<ProcKiller> plans = new List<ProcKiller>();
+        private readonly List<ProcessKiller> plans = new List<ProcessKiller>();
 
         public PageGK()
         {
@@ -47,18 +47,22 @@ namespace Triumph_0._1
 
                 string[] array = ret.Split(',');
                 DateTime time = DateTime.ParseExact(array[0], "yyyy.MM.dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                ProcKiller newpk = new ProcKiller(array[1], time);
-                newpk.ProcessKilled += HandleProcessKilled;
-                newpk.Reminded += HandleReminded;
-                plans.Add(newpk);
 
-                Chip newChip = new Chip
+                if (time > DateTime.Now)
                 {
-                    Content = time.ToString("HH:mm:ss") + " " + array[1],
-                    Icon = array[1].First().ToString(),
-                    Style = FindResource("MaterialDesignOutlineChip") as Style
-                };
-                ChipStackPanel.Children.Add(newChip);
+                    ProcessKiller newpk = new ProcessKiller(array[1], time);
+                    newpk.ProcessKilled += HandleProcessKilled;
+                    newpk.Reminded += HandleReminded;
+                    plans.Add(newpk);
+
+                    Chip newChip = new Chip
+                    {
+                        Content = time.ToString("HH:mm:ss") + " " + array[1],
+                        Icon = array[1].First().ToString(),
+                        Style = FindResource("MaterialDesignOutlineChip") as Style
+                    };
+                    ChipStackPanel.Children.Add(newChip);
+                }
 
                 count++;
             }
@@ -92,7 +96,7 @@ namespace Triumph_0._1
                 return;
             }
 
-            ProcKiller newpk = new ProcKiller(App, selectedTime);
+            ProcessKiller newpk = new ProcessKiller(App, selectedTime);
             newpk.ProcessKilled += HandleProcessKilled;
             newpk.Reminded += HandleReminded;
             plans.Add(newpk);
@@ -120,7 +124,7 @@ namespace Triumph_0._1
             iniFile.RemoveIniGroup("Plans");
 
             int count = 1;
-            foreach (ProcKiller plan in plans)
+            foreach (ProcessKiller plan in plans)
             {
                 iniFile.WriteIniValue("Plans", "plan" + count.ToString(), plan.time.ToString("yyyy.MM.dd HH:mm:ss") + "," + plan.App);
                 count++;
@@ -128,7 +132,7 @@ namespace Triumph_0._1
             Console.WriteLine("finished write ini file");
         }
 
-        private void HandleProcessKilled(ProcKiller plan)
+        private void HandleProcessKilled(ProcessKiller plan)
         {
             while (plans.Contains(plan))
             {

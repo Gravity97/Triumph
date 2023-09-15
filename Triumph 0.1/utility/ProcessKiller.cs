@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Triumph_0._1
 {
-    internal class ProcKiller
+    internal class ProcessKiller
     {
         readonly public DateTime time;
         readonly public string App;
@@ -16,10 +16,10 @@ namespace Triumph_0._1
         readonly public Timer killer;
         readonly public Timer message;
 
-        public event Action<ProcKiller> ProcessKilled;
+        public event Action<ProcessKiller> ProcessKilled;
         public event Action<int> Reminded;
 
-        public ProcKiller(string App, DateTime time, int remindTimeSpan = 5)
+        public ProcessKiller(string App, DateTime time, int remindTimeSpan = 5)
         {
             this.App = App;
             this.time = time;

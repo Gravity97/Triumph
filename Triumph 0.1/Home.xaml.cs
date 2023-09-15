@@ -20,7 +20,7 @@ namespace Triumph_0._1
     /// </summary>
     public partial class Home : Page
     {
-        public Module func = new Module();
+        public Module modules = new Module();
         public Home()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace Triumph_0._1
 
         public void Card1_Click(object sender, RoutedEventArgs e)
         {
-            func.Execute(func.mainModules[0].id, this);
+            modules.Execute(modules.mainModules[0].id, this);
         }
     }
 }
